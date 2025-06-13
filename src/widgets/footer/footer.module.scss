@@ -1,0 +1,27 @@
+.footer {
+  width: 100%;
+  padding: 22px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+
+  .list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .inc {
+    margin: 36px auto;
+    text-align: center;
+    font-size: 12px;
+    color: #737373;
+  }
+
+  a {
+    color: #737373;
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,44 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  padding-top: 85px;
+  width: 350px;
+  text-align: center;
+
+  .title {
+    font-weight: 600;
+    margin: 14px 0;
+  }
+
+  .loginBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 40px;
+    border: 1px solid #dbdbdb;
+
+    input {
+      font-size: 12px;
+      padding: 12px 8px;
+      border: 1px solid #dbdbdb;
+      width: 100%;
+      border-radius: 6px;
+      background: #fafafa;
+    }
+  }
+
+  .singUpBtn {
+    width: 100%;
+    border: none;
+    background: #0095f6;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 8px;
+    padding: 8px;
+    color: #fff;
+    margin: 24px 0 60px;
+  }
+}

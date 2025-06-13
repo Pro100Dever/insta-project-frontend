@@ -1,0 +1,33 @@
+.nav {
+  width: 245px;
+  height: 100vh;
+  padding: 25px;
+  border-right: 1px solid #dbdbdb;
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    margin: 34px 0 45px;
+    gap: 30px;
+
+    & li a {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+  }
+
+  .profileLink {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    & img {
+      border-radius: 50%;
+      height: 24px;
+      width: 24px;
+      object-fit: cover;
+      object-position: center center;
+    }
+  }
+}
