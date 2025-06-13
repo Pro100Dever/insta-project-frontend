@@ -1,0 +1,17 @@
+.section {
+  margin: 90px auto 50px;
+}
+
+.imgBox {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+
+  a,
+  img {
+    height: 316px;
+    width: 316px;
+    object-fit: fill;
+    object-position: center center;
+  }
+}
