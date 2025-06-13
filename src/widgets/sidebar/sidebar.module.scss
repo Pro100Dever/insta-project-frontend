@@ -1,6 +1,7 @@
 .nav {
   width: 245px;
-  height: 100vh;
+  height: 100%;
+  min-height: 85vh;
   padding: 25px;
   border-right: 1px solid #dbdbdb;
   position: sticky;

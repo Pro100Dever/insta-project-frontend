@@ -11,11 +11,13 @@
 
 .notiBox {
   width: 400px;
-  height: 100vh;
+  height: 100%;
+  min-height: 85vh;
   padding: 20px 24px 150px;
   border-right: 1px solid #dbdbdb;
   border-radius: 0 16px 0 0;
   box-shadow: 4px 0px 24px 0px #00000026;
+
   background: #fff;
   overflow-y: auto;
 

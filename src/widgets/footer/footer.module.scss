@@ -1,10 +1,10 @@
 .footer {
   width: 100%;
   padding: 22px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  position: static;
   background: #fff;
+  position: relative;
+  z-index: 2;
 
   .list {
     display: flex;
@@ -14,7 +14,7 @@
   }
 
   .inc {
-    margin: 36px auto 12px;
+    margin: 36px auto 18px;
     text-align: center;
     font-size: 12px;
     color: #737373;
