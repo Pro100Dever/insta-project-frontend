@@ -1,0 +1,107 @@
+.section {
+  margin: 60px auto;
+
+  .postsBox {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    align-content: center;
+    gap: 24px 40px;
+  }
+  .box {
+    max-width: 404px;
+    width: 100%;
+    border-bottom: 1px solid #dbdbdb;
+    padding-bottom: 40px;
+
+    .img {
+      max-width: 404px;
+      width: 100%;
+      margin-bottom: 14px;
+    }
+  }
+  .userInfoBox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+
+    .imgBox {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      background:
+        linear-gradient(white, white) padding-box,
+        linear-gradient(60deg, #f6fa00, #b700ff) border-box;
+
+      img {
+        width: 24px;
+        height: 24px;
+        object-fit: cover;
+        border-radius: 50%;
+        display: block;
+      }
+    }
+    .name {
+      margin-left: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .time {
+      font-size: 14px;
+      color: #737373;
+    }
+    .follow {
+      color: #0095f6;
+      font-weight: 600;
+      font-size: 14px;
+      background: transparent;
+      padding: 6px 12px;
+      cursor: pointer;
+      width: 80px;
+    }
+  }
+
+  .iconBox {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 8px;
+
+    .icon {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+  }
+  .likes {
+    font-weight: 600;
+    font-size: 14px;
+    margin-right: 10px;
+    .score {
+      font-weight: 600;
+      font-size: 14px;
+    }
+  }
+  .text {
+    margin-top: 8px;
+    font-weight: 400;
+    font-size: 14px;
+  }
+  .allComments {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #737373;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  .more {
+    margin-left: 10px;
+    color: #737373;
+    background-color: transparent;
+    cursor: pointer;
+  }
+}
