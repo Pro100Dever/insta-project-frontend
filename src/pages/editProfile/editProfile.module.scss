@@ -1,0 +1,65 @@
+.section {
+  margin: 50px auto;
+  width: 100%;
+  max-width: 610px;
+
+  .title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 25px;
+    margin-bottom: 44px;
+  }
+
+  .photoBox {
+    text-align: center;
+    margin-bottom: 33px;
+
+    img {
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .upload {
+      display: none;
+    }
+    .uploadLabel {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+  }
+
+  .inputBox {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 24px;
+    margin-bottom: 70px;
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+
+      input,
+      textarea {
+        border: 1px solid #dbdbdb;
+        width: 100%;
+        font-size: 14px;
+        padding: 8px 16px;
+        border-radius: 12px;
+      }
+    }
+  }
+  .submitBtn {
+    width: 270px;
+    background: #0095f6;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 7px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+}
