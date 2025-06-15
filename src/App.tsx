@@ -1,4 +1,4 @@
-import NotFound from './pages/notFound/NotFound'
+import Profile from './pages/profile/Profile'
 import './shared/styles/_global.scss'
 import Footer from './widgets/footer/Footer'
 import Sidebar from './widgets/sidebar/Sidebar'
@@ -8,7 +8,7 @@ function App() {
     <>
       <div style={{ display: 'flex' }}>
         <Sidebar />
-        <NotFound />
+        <Profile />
       </div>
       <Footer />
     </>
