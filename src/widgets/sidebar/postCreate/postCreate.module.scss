@@ -1,0 +1,106 @@
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  width: 800px;
+  max-width: 90vw;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  font-weight: 600;
+  border-bottom: 1px solid #ddd;
+
+  .shareBtn {
+    background: none;
+    border: none;
+    color: #0095f6;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+
+.modalBody {
+  display: flex;
+  height: 500px;
+
+  .uploadBox {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #eee;
+
+    .uploadIcon {
+      font-size: 40px;
+      color: #999;
+      cursor: pointer;
+    }
+  }
+
+  .postMeta {
+    flex: 1;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+
+      .avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #ccc;
+      }
+
+      .username {
+        font-weight: bold;
+      }
+    }
+
+    .textarea {
+      flex: 1;
+      resize: none;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: 14px;
+    }
+
+    .charCount {
+      text-align: right;
+      font-size: 12px;
+      color: #999;
+    }
+  }
+  .uploadBox {
+    border: 2px dashed transparent;
+    transition:
+      border-color 0.2s,
+      background 0.2s;
+
+    &.dragOver {
+      border-color: #0095f6;
+      background-color: #f0f8ff;
+    }
+  }
+}
