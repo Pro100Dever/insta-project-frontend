@@ -3,7 +3,8 @@
 
   .postsBox {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 404px);
+    justify-content: center;
     justify-items: center;
     align-content: center;
     gap: 24px 40px;
