@@ -39,6 +39,21 @@ function Chat() {
       text: 'Конечно! Уже в деле.',
       time: '2025-06-16T10:03:00',
     },
+    {
+      id: 5,
+      sender: 'nikita',
+      name: 'Nikita',
+      avatar: '/this_is_fine.png',
+      text: 'Тоже хорошо!11 Погнали дальше работать над проектом 🚀',
+      time: '2024-06-16T10:02:00',
+    },
+    {
+      id: 6,
+      sender: 'me',
+      avatar: '/this_is_fine.png',
+      text: 'Конечно!11 Уже в деле.',
+      time: '2024-06-16T10:03:00',
+    },
   ]
 
   return (
@@ -77,7 +92,7 @@ function Chat() {
           <button className={style.viewProfile}>View profile</button>
         </header>
 
-        <div className={style.timestamp}>Jun 26, 2024, 08:49 PM</div>
+        {/* <div className={style.timestamp}>Jun 26, 2024, 08:49 PM</div> */}
 
         <div className={style.messages}>
           {messages.map((msg, i) => (
