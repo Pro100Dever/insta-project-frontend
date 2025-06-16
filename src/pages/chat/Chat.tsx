@@ -25,19 +25,19 @@ function Chat() {
       time: '2025-06-16T10:01:00',
     },
     {
-      id: 3,
+      id: 5,
       sender: 'nikita',
       name: 'Nikita',
       avatar: '/this_is_fine.png',
-      text: 'Тоже хорошо! Погнали дальше работать над проектом 🚀',
-      time: '2025-06-16T10:02:00',
+      text: 'Тоже хорошо!11 Погнали дальше работать над проектом 🚀',
+      time: '2024-06-16T10:02:00',
     },
     {
-      id: 4,
+      id: 6,
       sender: 'me',
       avatar: '/this_is_fine.png',
-      text: 'Конечно! Уже в деле.',
-      time: '2025-06-16T10:03:00',
+      text: 'Конечно!11 Уже в деле.',
+      time: '2024-06-16T10:03:00',
     },
     {
       id: 5,
@@ -52,6 +52,66 @@ function Chat() {
       sender: 'me',
       avatar: '/this_is_fine.png',
       text: 'Конечно!11 Уже в деле.',
+      time: '2024-06-16T10:03:00',
+    },
+    {
+      id: 5,
+      sender: 'nikita',
+      name: 'Nikita',
+      avatar: '/this_is_fine.png',
+      text: 'Тоже хорошо!11 Погнали дальше работать над проектом 🚀',
+      time: '2024-06-16T10:02:00',
+    },
+    {
+      id: 6,
+      sender: 'me',
+      avatar: '/this_is_fine.png',
+      text: 'Конечно!11 Уже в деле.',
+      time: '2024-06-16T10:03:00',
+    },
+    {
+      id: 5,
+      sender: 'nikita',
+      name: 'Nikita',
+      avatar: '/this_is_fine.png',
+      text: 'Тоже хорошо!11 Погнали дальше работать над проектом 🚀',
+      time: '2024-06-16T10:02:00',
+    },
+    {
+      id: 6,
+      sender: 'me',
+      avatar: '/this_is_fine.png',
+      text: 'Конечно!11 Уже в деле.',
+      time: '2024-06-16T10:03:00',
+    },
+    {
+      id: 5,
+      sender: 'nikita',
+      name: 'Nikita',
+      avatar: '/this_is_fine.png',
+      text: 'Тоже хорошо!11 Погнали дальше работать над проектом 🚀',
+      time: '2024-06-16T10:02:00',
+    },
+    {
+      id: 6,
+      sender: 'me',
+      avatar: '/this_is_fine.png',
+      text: 'Конечно!11 Уже в деле.',
+      time: '2024-06-16T10:03:00',
+    },
+    {
+      id: 7,
+      sender: 'nikita',
+      name: 'Nikita',
+      avatar: '/this_is_fine.png',
+      text: 'Тоже хорошо!22 Погнали дальше работать над проектом 🚀',
+      time: '2024-06-16T10:02:00',
+    },
+    {
+      id: 8,
+      sender: 'me',
+      avatar: '/this_is_fine.png',
+      text: 'Конечно!22 Уже в деле.',
       time: '2024-06-16T10:03:00',
     },
   ]
@@ -94,32 +154,34 @@ function Chat() {
 
         {/* <div className={style.timestamp}>Jun 26, 2024, 08:49 PM</div> */}
 
-        <div className={style.messages}>
-          {messages.map((msg, i) => (
-            <div
-              key={i}
-              className={`${style.message} ${
-                msg.sender === 'me' ? style.outgoing : style.incoming
-              }`}
-            >
-              {msg.sender === 'me' ? (
-                <div className={style.bubbleWithInitial}>
-                  <p>{msg.text}</p>
+        <div className={style.messagesBox}>
+          <div className={style.messages}>
+            {messages.map((msg, i) => (
+              <div
+                key={i}
+                className={`${style.message} ${
+                  msg.sender === 'me' ? style.outgoing : style.incoming
+                }`}
+              >
+                {msg.sender === 'me' ? (
+                  <div className={style.bubbleWithInitial}>
+                    <p>{msg.text}</p>
 
-                  <img
-                    className={style.userInitial}
-                    src={msg.avatar}
-                    alt={msg.name}
-                  />
-                </div>
-              ) : (
-                <>
-                  <img src={msg.avatar} alt={msg.name} />
-                  <p>{msg.text}</p>
-                </>
-              )}
-            </div>
-          ))}
+                    <img
+                      className={style.userInitial}
+                      src={msg.avatar}
+                      alt={msg.name}
+                    />
+                  </div>
+                ) : (
+                  <>
+                    <img src={msg.avatar} alt={msg.name} />
+                    <p>{msg.text}</p>
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
 
         <form className={style.messageInput}>
