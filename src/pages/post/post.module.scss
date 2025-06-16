@@ -1,0 +1,213 @@
+.section {
+  min-height: 150vh;
+  width: 100%;
+}
+
+.rightBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: -1;
+}
+
+.modalContent {
+  margin: 50px auto;
+  background: white;
+  border-radius: 12px;
+  max-height: 722px;
+  max-width: 1000px;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+  display: flex;
+}
+.postImgBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .img {
+    width: 577px;
+    max-height: 722px;
+    height: 100%;
+  }
+}
+
+.authorBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #efefef;
+  padding: 8px 10px;
+}
+
+.userImg {
+  text-align: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(white, white) padding-box,
+    linear-gradient(60deg, #f6fa00, #b700ff) border-box;
+}
+.descBox {
+  padding: 8px 10px;
+  display: flex;
+  gap: 14px;
+
+  .descText {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+}
+
+.commentText {
+  font-size: 14px;
+}
+
+.commentBlock {
+  max-width: 600px;
+  font-family: sans-serif;
+  overflow-y: auto;
+  max-height: 400px;
+  height: 100%;
+}
+
+.comment {
+  padding: 8px 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background-color: #ccc;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.bubbleContainer {
+  width: 100%;
+  margin-right: 15px;
+  .bubble {
+    background: #f0f0f0;
+    padding: 12px;
+    border-radius: 12px;
+    flex: 1;
+  }
+}
+
+.usernameBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.username {
+  font-weight: bold;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+.time {
+  font-size: 12px;
+  color: #737373;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  font-size: 14px;
+  color: #666;
+  margin-top: 6px;
+}
+
+.actions button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+
+  button,
+  span {
+    font-size: 14px;
+  }
+}
+
+.replies {
+  margin-top: 12px;
+}
+
+.reply {
+  display: flex;
+  gap: 10px;
+}
+
+.replyAvatar {
+  width: 32px;
+  height: 32px;
+  background-color: #ccc;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.postLikesBlock {
+  padding: 14px;
+  border-top: 1px solid #dbdbdb;
+  border-bottom: 1px solid #dbdbdb;
+
+  .imgBlock {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .img {
+    width: 24px;
+    height: 24px;
+  }
+  p {
+    font-size: 14px;
+  }
+  .likeCount {
+    font-weight: bold;
+  }
+}
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .formInput {
+    padding: 14px;
+    outline: none;
+    width: 100%;
+  }
+
+  button {
+    padding: 15px;
+    background: transparent;
+    color: #0095f6;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}
+
+.usersCommentContainer {
+  max-height: 570px;
+}

@@ -1,4 +1,4 @@
-import Chat from './pages/chat/Chat'
+import Post from './pages/post/Post'
 import './shared/styles/_global.scss'
 import Footer from './widgets/footer/Footer'
 import Sidebar from './widgets/sidebar/Sidebar'
@@ -8,7 +8,8 @@ function App() {
     <>
       <div style={{ display: 'flex' }}>
         <Sidebar />
-        <Chat />
+        {/* <Home /> */}
+        <Post />
       </div>
       <Footer />
     </>
