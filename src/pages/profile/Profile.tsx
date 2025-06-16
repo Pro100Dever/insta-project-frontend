@@ -5,8 +5,11 @@ import PostPhoto from '../../shared/assets/image/mock-post-img.png'
 import ProfilePhoto from '../../shared/assets/image/mock-profile-photo.png'
 import style from './profile.module.scss'
 
-function Profile() {
-  const [myCheck, setMyCheck] = useState(false)
+type ProfileProps = {
+  myProfile: boolean
+}
+
+function Profile({ myProfile }: ProfileProps) {
   const [expanded, setExpanded] = useState(false)
 
   const limit = 120
@@ -31,7 +34,7 @@ function Profile() {
         <div className={style.uerRightBox}>
           <div className={style.userNameBox}>
             <h3 className={style.userName}>itcareerhub</h3>
-            {!myCheck ? (
+            {!myProfile ? (
               <div className={style.followBox}>
                 <button className={`${style.btn} ${style.follow}`}>
                   Follow
