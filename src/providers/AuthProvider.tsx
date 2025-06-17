@@ -1,17 +1,17 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useCallback, useEffect, useState } from 'react'
 import { initializeAxiosClient } from '../widgets/axiosClient/axiosClient'
+
+interface IUserData {
+  id: string
+  fullName: string
+  avatar: null | string
+}
 
 interface AuthContextType {
   isAuthenticated: boolean
   user: IUserData | null
   login: (token: string, userData: IUserData) => void
   logout: () => void
-}
-
-interface IUserData {
-  id: string
-  fullName: string
-  avatar: null | string
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -32,21 +32,21 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, [])
 
-  const login = (token: string, userData: IUserData) => {
+  const login = useCallback((token: string, userData: IUserData) => {
     localStorage.setItem('token', token)
     localStorage.setItem('user', JSON.stringify(userData))
     setUser(userData)
-  }
+  }, [])
 
-  const logout = () => {
+  const logout = useCallback(() => {
     localStorage.removeItem('token')
     localStorage.removeItem('user')
     setUser(null)
-  }
+  }, [])
 
   useEffect(() => {
     initializeAxiosClient(logout)
-  }, [])
+  }, [logout])
 
   return (
     <AuthContext.Provider
@@ -56,4 +56,5 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     </AuthContext.Provider>
   )
 }
+
 export { AuthContext, AuthProvider }

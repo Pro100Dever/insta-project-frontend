@@ -7,7 +7,7 @@ const axiosClient = axios.create({
 
 let logoutFn: (() => void) | null = null
 
-export const initializeAxiosClient = (logout: () => void) => {
+const initializeAxiosClient = (logout: () => void) => {
   logoutFn = logout
 }
 
@@ -23,3 +23,4 @@ axiosClient.interceptors.response.use(
 )
 
 export default axiosClient
+export { initializeAxiosClient }
