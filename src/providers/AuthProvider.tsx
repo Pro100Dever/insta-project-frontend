@@ -1,4 +1,6 @@
 import { createContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { initializeAxiosClient } from '../widgets/axiosClient/axiosClient'
 
 interface AuthContextType {
   isAuthenticated: boolean
@@ -22,6 +24,7 @@ const AuthContext = createContext<AuthContextType>({
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<IUserData | null>(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -42,6 +45,10 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.removeItem('user')
     setUser(null)
   }
+
+  useEffect(() => {
+    initializeAxiosClient(logout, navigate)
+  }, [logout, navigate])
 
   return (
     <AuthContext.Provider
