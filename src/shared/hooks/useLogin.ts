@@ -16,15 +16,5 @@ export function useLogin() {
     mutationFn: (userData: IUserData) => postLogin(userData),
   })
 
-  // function checkIsErr() {
-  //   if (isSuccess) {
-  //     if (data.status === 'ERR') {
-  //       isError = true
-  //       isSuccess = false
-  //       return isError, isSuccess
-  //     }
-  //   }
-  // }
-  // checkIsErr()
   return { isPending, isSuccess, isError, mutate, error }
 }

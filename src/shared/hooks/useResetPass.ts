@@ -3,12 +3,7 @@ import type { ResPassFormData } from '../../components/ResetPassForm'
 import axiosClient from '../../widgets/axiosClient/axiosClient'
 
 const postNewPassReq = async (data: ResPassFormData) => {
-  try {
-    return await axiosClient.post(`/auth/reset-password-request`, data)
-  } catch (error: unknown) {
-    console.log(error.message)
-    throw error
-  }
+  return await axiosClient.post(`/auth/reset-password-request`, data)
 }
 
 export function useResetPass() {
@@ -16,15 +11,5 @@ export function useResetPass() {
     mutationFn: (email: ResPassFormData) => postNewPassReq(email),
   })
 
-  // function checkIsErr() {
-  //   if (isSuccess) {
-  //     if (data.status === 'ERR') {
-  //       isError = true
-  //       isSuccess = false
-  //       return isError, isSuccess
-  //     }
-  //   }
-  // }
-  // checkIsErr()
   return { isPending, isSuccess, isError, mutate, error }
 }

@@ -7,13 +7,7 @@ interface INewPassReq extends NewPasswordFormData {
 }
 
 const postNewPass = async (data: INewPassReq) => {
-  try {
-    console.log(data)
-    return await axiosClient.post(`/auth/reset-password`, data)
-  } catch (error: unknown) {
-    console.log(error.message)
-    throw error
-  }
+  return await axiosClient.post(`/auth/reset-password`, data)
 }
 
 export function useNewPass() {
@@ -21,15 +15,5 @@ export function useNewPass() {
     mutationFn: (data: INewPassReq) => postNewPass(data),
   })
 
-  // function checkIsErr() {
-  //   if (isSuccess) {
-  //     if (data.status === 'ERR') {
-  //       isError = true
-  //       isSuccess = false
-  //       return isError, isSuccess
-  //     }
-  //   }
-  // }
-  // checkIsErr()
   return { isPending, isSuccess, isError, mutate, error }
 }

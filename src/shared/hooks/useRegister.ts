@@ -9,12 +9,7 @@ interface IUser {
 }
 
 const postRegister = async (userData: IUser) => {
-  try {
-    return await axiosClient.post(`/auth/register`, userData)
-  } catch (error: unknown) {
-    console.log(error.message)
-    throw error
-  }
+  return await axiosClient.post(`/auth/register`, userData)
 }
 
 export function useRegister() {
@@ -23,15 +18,5 @@ export function useRegister() {
     mutationFn: (userData: IUser) => postRegister(userData),
   })
 
-  // function checkIsErr() {
-  //   if (isSuccess) {
-  //     if (data.status === 'ERR') {
-  //       isError = true
-  //       isSuccess = false
-  //       return isError, isSuccess
-  //     }
-  //   }
-  // }
-  // checkIsErr()
   return { isPending, isSuccess, isError, mutate, error }
 }
