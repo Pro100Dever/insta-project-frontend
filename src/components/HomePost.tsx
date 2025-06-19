@@ -1,21 +1,38 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import type { IHomePost } from '../pages/home/Home'
 import style from '../pages/home/home.module.scss'
+import { AuthContext } from '../providers/AuthProvider'
 import comment from '../shared/assets/icons/comment.svg'
 import heart from '../shared/assets/icons/heart.svg'
-import defaultPhoto from '/public/this_is_fine.png'
+import HeartAlsComp from '../shared/assets/icons/heartAlsComp'
+import { useFollow } from '../shared/hooks/useFollow'
+import { useLikePost } from '../shared/hooks/useLikePost'
 
 function HomePost({ postData }: { postData: IHomePost }) {
-  const [expanded, setExpanded] = useState(false)
   const { author, createdAt, isLiked, id, mediaUrl, text, _count } = postData
-  const authorPhoto = author.profile.photo || defaultPhoto
+  const { user } = useContext(AuthContext)
+  const [expanded, setExpanded] = useState(false)
+  const [isFollowed, setIsFollowed] = useState(author.isFollowed)
+  const [isPostLiked, setPostIsLiked] = useState(isLiked)
+  const [likes, setLikes] = useState(_count.likes)
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  const authorPhoto = author.profile.photo || '/this_is_fine.png'
+
+  const { mutate: followMutate, isPending: isFollowPending } = useFollow(
+    author.id,
+    isFollowed
+  )
+  const { mutate: likeMutate } = useLikePost(id, isPostLiked)
 
   const limit = 20
   const textContent = text ?? ''
   const isTruncated = textContent.length > limit
   const visibleText = expanded ? textContent : textContent.slice(0, limit)
 
-  function getTimeAgo(dateString) {
+  function getTimeAgo(dateString: string) {
     const date = new Date(dateString)
     const now = new Date()
     const diffMs = now - date
@@ -41,6 +58,24 @@ function HomePost({ postData }: { postData: IHomePost }) {
     return `${seconds}s`
   }
 
+  const handleFollow = () => {
+    setIsFollowed(prev => !prev)
+    followMutate()
+  }
+
+  function handlePostLike() {
+    if (isPostLiked) {
+      setLikes(prev => prev - 1)
+    } else {
+      setLikes(prev => prev + 1)
+    }
+    setPostIsLiked(prev => !prev)
+    likeMutate()
+  }
+  function handleCommentClick() {
+    navigate(`/post/${id}`, { state: { background: location } })
+  }
+
   return (
     <div className={style.box}>
       <div className={style.userInfoBox}>
@@ -51,18 +86,45 @@ function HomePost({ postData }: { postData: IHomePost }) {
           {author.username}{' '}
           <span className={style.time}>• {getTimeAgo(createdAt)} •</span>
         </p>
-        <button className={style.follow}>follow</button>
+        {author.id !== user?.id ? (
+          <button
+            className={style.follow}
+            onClick={handleFollow}
+            disabled={isFollowPending}
+          >
+            {isFollowed ? 'Unfollow' : 'Follow'}
+          </button>
+        ) : (
+          ''
+        )}
       </div>
       <div>
         <div>
           <img src={mediaUrl} className={style.img} alt='PostPhoto' />
         </div>
         <div className={style.iconBox}>
-          <img className={style.icon} src={heart} alt='heart' />
-          <img className={style.icon} src={comment} alt='comment' />
+          {!isPostLiked ? (
+            <img
+              className={style.icon}
+              onClick={handlePostLike}
+              src={heart}
+              alt='heart'
+            />
+          ) : (
+            <div className={style.icon} onClick={handlePostLike}>
+              <HeartAlsComp />
+            </div>
+          )}
+
+          <img
+            className={style.icon}
+            onClick={handleCommentClick}
+            src={comment}
+            alt='comment'
+          />
         </div>
         <p className={style.likes}>
-          <span className={style.score}>{_count.likes}</span> likes
+          <span className={style.score}>{likes}</span> likes
         </p>
         <p className={style.text}>
           <span className={style.likes}>{author.username}</span>
@@ -77,7 +139,7 @@ function HomePost({ postData }: { postData: IHomePost }) {
             </button>
           )}
         </p>
-        <button className={style.allComments}>
+        <button className={style.allComments} onClick={handleCommentClick}>
           View all comments ({_count.comments})
         </button>
       </div>

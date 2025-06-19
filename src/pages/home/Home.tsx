@@ -9,6 +9,7 @@ export interface IHomePost {
     username: string
     profile: { photo: string }
   }
+  id: string
   createdAt: string
   isLiked: boolean
   mediaUrl: string

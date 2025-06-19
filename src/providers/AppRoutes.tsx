@@ -151,40 +151,38 @@ function AppRoutes() {
 
       {background && (
         <Routes>
-          <Route element={<MainLayout />}>
-            <Route
-              path='/search'
-              element={
-                <AccessRoute>
-                  <Search />
-                </AccessRoute>
-              }
-            />
-            <Route
-              path='/notifications'
-              element={
-                <AccessRoute>
-                  <Notification />
-                </AccessRoute>
-              }
-            />
-            <Route
-              path='/post/create'
-              element={
-                <AccessRoute>
-                  <PostCreate />
-                </AccessRoute>
-              }
-            />
-            <Route
-              path='/post/:id'
-              element={
-                <AccessRoute>
-                  <Post />
-                </AccessRoute>
-              }
-            />
-          </Route>
+          <Route
+            path='/search'
+            element={
+              <AccessRoute>
+                <Search />
+              </AccessRoute>
+            }
+          />
+          <Route
+            path='/notifications'
+            element={
+              <AccessRoute>
+                <Notification />
+              </AccessRoute>
+            }
+          />
+          <Route
+            path='/post/create'
+            element={
+              <AccessRoute>
+                <PostCreate />
+              </AccessRoute>
+            }
+          />
+          <Route
+            path='/post/:id'
+            element={
+              <AccessRoute>
+                <Post />
+              </AccessRoute>
+            }
+          />
         </Routes>
       )}
     </>
