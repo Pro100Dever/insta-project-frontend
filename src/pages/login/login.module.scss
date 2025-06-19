@@ -21,6 +21,15 @@
       padding: 30px 40px 24px;
       border: 1px solid #dbdbdb;
 
+      .form {
+        width: 100%;
+      }
+
+      .error {
+        color: red;
+        font-size: 12px;
+      }
+
       .loginInp,
       .passwordInp {
         font-size: 12px;

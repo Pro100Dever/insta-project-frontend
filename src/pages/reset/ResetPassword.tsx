@@ -1,5 +1,6 @@
+import ResPassForm from '../../components/ResetPassForm'
 import Security from '../../shared/assets/icons/Security'
-import * as style from './resetPassword.module.scss'
+import style from './resetPassword.module.scss'
 
 function ResetPassword() {
   return (
@@ -13,23 +14,18 @@ function ResetPassword() {
             get back into your account.
           </p>
         </div>
-        <form action='' className={style.form}>
-          <div className={style.inputBox}>
-            <input type='text' name='login' placeholder='Email or Username' />
-          </div>
-          <button className={style.singUpBtn}>Reset your password</button>
-        </form>
+        <ResPassForm />
         <div className={style.orBox}>
           <div className={style.orLine}></div>
           <span className={style.orText}>OR</span>
           <div className={style.orLine}></div>
         </div>
-        <a href='' className={style.createLink}>
+        <a href='http://localhost:5173/register' className={style.createLink}>
           Create new account
         </a>
       </div>
       <div className={style.regBox}>
-        <a href='' className={style.text}>
+        <a href='http://localhost:5173/login' className={style.text}>
           Back to login
         </a>
       </div>
