@@ -18,7 +18,6 @@ const postNewPass = async (data: INewPassReq) => {
 
 export function useNewPass() {
   const { isError, isSuccess, isPending, mutate, error } = useMutation({
-    mutationKey: ['new user'],
     mutationFn: (data: INewPassReq) => postNewPass(data),
   })
 

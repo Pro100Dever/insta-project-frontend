@@ -32,7 +32,7 @@ function LoginForm() {
     resolver: zodResolver(loginSchema),
   })
 
-  const { mutate, isPending, isSuccess, isError, error } = useLogin()
+  const { mutate, isPending, isSuccess, isError } = useLogin()
   const { login } = useContext(AuthContext)
   const navigate = useNavigate()
 

@@ -13,7 +13,6 @@ const postNewPassReq = async (data: ResPassFormData) => {
 
 export function useResetPass() {
   const { isError, isSuccess, isPending, mutate, error } = useMutation({
-    mutationKey: ['new user'],
     mutationFn: (email: ResPassFormData) => postNewPassReq(email),
   })
 
