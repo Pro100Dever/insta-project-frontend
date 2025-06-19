@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import LoginForm from '../../components/LoginForm'
 import logo from '../../shared/assets/image/Logo.png'
 import phones from '../../shared/assets/image/Phones.png'
@@ -20,17 +21,13 @@ function Login() {
             <span className={style.orText}>OR</span>
             <div className={style.orLine}></div>
           </div>
-          <a
-            href='http://localhost:5173/reset-password'
-            className={style.forgotLink}
-          >
+          <Link to='/reset-password' className={style.forgotLink}>
             Forgot password?
-          </a>
+          </Link>
         </div>
         <div className={style.regBox}>
           <p className={style.text}>
-            Don't have an account?{' '}
-            <a href='http://localhost:5173/register'>Sign up</a>
+            Don't have an account? <Link to='/register'>Sign up</Link>
           </p>
         </div>
       </div>

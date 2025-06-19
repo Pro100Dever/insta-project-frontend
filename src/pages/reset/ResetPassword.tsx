@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import ResPassForm from '../../components/ResetPassForm'
 import Security from '../../shared/assets/icons/Security'
 import style from './resetPassword.module.scss'
@@ -20,14 +21,14 @@ function ResetPassword() {
           <span className={style.orText}>OR</span>
           <div className={style.orLine}></div>
         </div>
-        <a href='http://localhost:5173/register' className={style.createLink}>
+        <Link to='/register' className={style.createLink}>
           Create new account
-        </a>
+        </Link>
       </div>
       <div className={style.regBox}>
-        <a href='http://localhost:5173/login' className={style.text}>
+        <Link to='/login' className={style.text}>
           Back to login
-        </a>
+        </Link>
       </div>
     </section>
   )

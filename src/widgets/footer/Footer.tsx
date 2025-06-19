@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import style from './footer.module.scss'
 
 function Footer() {
@@ -5,22 +6,22 @@ function Footer() {
     <footer className={style.footer}>
       <ul className={style.list}>
         <li>
-          <a href=''>Home</a>
+          <Link to=''>Home</Link>
         </li>
         <li>
-          <a href=''>Search</a>
+          <Link to=''>Search</Link>
         </li>
         <li>
-          <a href=''>Explore</a>
+          <Link to=''>Explore</Link>
         </li>
         <li>
-          <a href=''>Messages</a>
+          <Link to=''>Messages</Link>
         </li>
         <li>
-          <a href=''>Notifications</a>
+          <Link to=''>Notifications</Link>
         </li>
         <li>
-          <a href=''>Create</a>
+          <Link to=''>Create</Link>
         </li>
       </ul>
       <h4 className={style.inc}>© 2024 ICHgram</h4>

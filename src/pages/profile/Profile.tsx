@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import LinkIcon from '../../shared/assets/icons/link.svg'
 import PostPhoto2 from '../../shared/assets/image/mock-post-img-2.png'
 import PostPhoto from '../../shared/assets/image/mock-post-img.png'
@@ -39,12 +40,14 @@ function Profile({ myProfile }: ProfileProps) {
                 <button className={`${style.btn} ${style.follow}`}>
                   Follow
                 </button>
-                <a className={`${style.btn} ${style.message}`}>Message</a>
+                <Link to='' className={`${style.btn} ${style.message}`}>
+                  Message
+                </Link>
               </div>
             ) : (
-              <a href='' className={style.editProfile}>
+              <Link to='' className={style.editProfile}>
                 Edit profile
-              </a>
+              </Link>
             )}
           </div>
           <div className={style.countBox}>
@@ -80,9 +83,9 @@ function Profile({ myProfile }: ProfileProps) {
         </div>
       </div>
       <div className={style.userPostBox}>
-        <a href=''>
+        <Link to=''>
           <img src={PostPhoto} alt='photo' width='307' height='307' />
-        </a>
+        </Link>
         <a href=''>
           <img src={PostPhoto2} alt='photo' width='307' height='307' />
         </a>

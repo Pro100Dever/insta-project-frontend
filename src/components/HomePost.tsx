@@ -51,7 +51,7 @@ function HomePost({ postData }: { postData: IHomePost }) {
     if (months > 0) return `${months} month`
     if (weeks > 1) return `${weeks} weeks`
     if (weeks > 0) return `${weeks} week`
-    if (days > 1) return `${weeks} days`
+    if (days > 1) return `${days} days`
     if (days > 0) return `${days} day`
     if (hours > 0) return `${hours} h`
     if (minutes > 0) return `${minutes} m`

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import RegForm from '../../components/RegForm'
 import logo from '../../shared/assets/image/Logo.png'
 import * as style from './singUp.module.scss'
@@ -16,7 +17,7 @@ function SingUp() {
       </div>
       <div className={style.regBox}>
         <p className={style.text}>
-          Have an account? <a href='http://localhost:5173/login'>Log in</a>
+          Have an account? <Link to='/login'>Log in</Link>
         </p>
       </div>
     </section>

@@ -130,14 +130,13 @@ function AppRoutes() {
             }
           />
           <Route
-            path='/post'
+            path='/post/:id'
             element={
               <AccessRoute>
                 <Post />
               </AccessRoute>
             }
           />{' '}
-          {/*Добавить для пути /:id*/}
           <Route
             path='*'
             element={

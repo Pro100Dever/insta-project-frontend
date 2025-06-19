@@ -1,5 +1,6 @@
 import { ChevronDown, ChevronUp, MessageCircle, ThumbsUp } from 'lucide-react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import CommentIcon from '../../shared/assets/icons/comment.svg'
 import LikeIcon from '../../shared/assets/icons/heart.svg'
 import PostSet from '../../shared/assets/icons/postSet.svg'
@@ -8,6 +9,7 @@ import UserPhoto from '../../shared/assets/image/mock-profile-photo.png'
 import styles from './post.module.scss'
 
 function Post() {
+  const navigate = useNavigate()
   const initialComments = [
     {
       id: 3,
@@ -58,11 +60,13 @@ function Post() {
       )
     )
   }
-
+  function handleBack() {
+    navigate(-1) //вернуться назад
+  }
   return (
     <div className={styles.section}>
-      <div className={styles.modalOverlay}></div>
       <div className={styles.modalContent}>
+        <div className={styles.modalOverlay} onClick={handleBack}></div>
         <div className={styles.postImgBox}>
           <img className={styles.img} src={PostImage} alt='post' />
         </div>
