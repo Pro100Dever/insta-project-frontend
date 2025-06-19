@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import type { IHomePost } from '../pages/home/Home'
 import style from '../pages/home/home.module.scss'
 import { AuthContext } from '../providers/AuthProvider'
@@ -79,13 +79,22 @@ function HomePost({ postData }: { postData: IHomePost }) {
   return (
     <div className={style.box}>
       <div className={style.userInfoBox}>
-        <div className={style.imgBox}>
-          <img src={authorPhoto} alt='UserPhoto' />
-        </div>
-        <p className={style.name}>
-          {author.username}{' '}
-          <span className={style.time}>• {getTimeAgo(createdAt)} •</span>
-        </p>
+        <Link
+          to={
+            user?.id === postData.author.id
+              ? `/user/my-profile`
+              : `/user/${postData.author.id}/profile`
+          }
+          className={style.userLink}
+        >
+          <div className={style.imgBox}>
+            <img src={authorPhoto} alt='UserPhoto' />
+          </div>
+          <p className={style.name}>
+            {author.username}{' '}
+            <span className={style.time}>• {getTimeAgo(createdAt)} •</span>
+          </p>
+        </Link>
         {author.id !== user?.id ? (
           <button
             className={style.follow}

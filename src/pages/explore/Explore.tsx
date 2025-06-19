@@ -1,48 +1,26 @@
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import Photo2 from '../../shared/assets/image/mock-post-img-2.png'
-import Photo from '../../shared/assets/image/mock-post-img.png'
+import { AuthContext } from '../../providers/AuthProvider'
+import { useUserPosts } from '../../shared/hooks/useUserPosts'
 import style from './explore.module.scss'
 
+interface IUserPost {
+  id: string
+  mediaUrl: string
+}
+
 function Explore() {
+  const { user } = useContext(AuthContext)
+  const { data = [] } = useUserPosts(user?.id || '')
+
   return (
     <section className={style.section}>
       <div className={style.imgBox}>
-        <Link to=''>
-          <img src={Photo} alt='photo' />
-        </Link>
-        <a href=''>
-          <img src={Photo2} alt='photo' />
-        </a>
-        <a href=''>
-          <img src={Photo} alt='photo' />
-        </a>
-        <a href=''>
-          <img src={Photo2} alt='photo' />
-        </a>
-        <a href=''>
-          <img src={Photo} alt='photo' />
-        </a>
-        <a href=''>
-          <img src={Photo2} alt='photo' />
-        </a>
-        <a href=''>
-          <img src={Photo} alt='photo' />
-        </a>
-        <a href=''>
-          <img src={Photo2} alt='photo' />
-        </a>
-        <a href=''>
-          <img src={Photo} alt='photo' />
-        </a>
-        <a href=''>
-          <img src={Photo2} alt='photo' />
-        </a>
-        <a href=''>
-          <img src={Photo} alt='photo' />
-        </a>
-        <a href=''>
-          <img src={Photo2} alt='photo' />
-        </a>
+        {data.map((post: IUserPost) => (
+          <Link key={post.id} to={`/post/${post.id}`}>
+            <img src={post.mediaUrl} alt='photo' />
+          </Link>
+        ))}
       </div>
     </section>
   )

@@ -1,5 +1,5 @@
 import { useState, type SetStateAction } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSearch } from '../../../shared/hooks/useSearch'
 import style from './search.module.scss'
 
@@ -14,6 +14,8 @@ interface ISearchUser {
 
 function Search() {
   const [searchValue, setSearchValue] = useState('')
+  const navigate = useNavigate()
+
   const { data } = useSearch(searchValue)
 
   function handleChange(e: {
@@ -22,6 +24,10 @@ function Search() {
   }) {
     e.preventDefault()
     setSearchValue(e.target.value)
+  }
+
+  function handleClick() {
+    navigate(-1)
   }
   return (
     <div className={style.box}>
@@ -64,7 +70,7 @@ function Search() {
           </ul>
         </div>
       </div>
-      <div className={style.background}></div>
+      <div className={style.background} onClick={handleClick}></div>
     </div>
   )
 }

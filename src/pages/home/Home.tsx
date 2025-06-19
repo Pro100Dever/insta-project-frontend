@@ -28,7 +28,9 @@ function Home() {
   return (
     <section className={style.section}>
       <div className={style.postsBox}>
-        {data?.map(post => <HomePost key={post.id} postData={post} />)}
+        {data?.map((post: IHomePost) => (
+          <HomePost key={post.id} postData={post} />
+        ))}
       </div>
     </section>
   )
