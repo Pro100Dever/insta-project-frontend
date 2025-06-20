@@ -1,74 +1,118 @@
-import { ChevronDown, ChevronUp, MessageCircle, ThumbsUp } from 'lucide-react'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import Comments from '../../components/Comments'
 import CommentIcon from '../../shared/assets/icons/comment.svg'
-import LikeIcon from '../../shared/assets/icons/heart.svg'
+import Heart from '../../shared/assets/icons/heart.svg'
+import HeartAlsComp from '../../shared/assets/icons/heartAlsComp'
 import PostSet from '../../shared/assets/icons/postSet.svg'
-import PostImage from '../../shared/assets/image/mock-post-img.png'
-import UserPhoto from '../../shared/assets/image/mock-profile-photo.png'
+import {
+  useCreateComment,
+  type IPost,
+} from '../../shared/hooks/useCreateComment'
+import { useDeletePost } from '../../shared/hooks/useDeletePost'
+import { useGetPost } from '../../shared/hooks/useGetPost'
+import { useLikePost } from '../../shared/hooks/useLikePost'
 import styles from './post.module.scss'
 
 function Post() {
   const navigate = useNavigate()
-  const initialComments = [
-    {
-      id: 3,
-      author: 'vladimir',
-      text: 'Это супер, поздравляю ребят!',
-      likes: 5,
-      replies: [
-        {
-          id: 101,
-          author: 'anna',
-          text: 'Согласна, это круто!',
-        },
-      ],
-    },
-    {
-      id: 2,
-      author: 'dev_john',
-      text: 'TailBook — очень нужный проект!',
-      likes: 2,
-      replies: [],
-    },
-    {
-      id: 1,
-      author: 'frontend_kate',
-      text: 'Класс, удачи на Web Summit!',
-      likes: 4,
-      replies: [
-        {
-          id: 103,
-          author: 'mike',
-          text: 'Спасибо большое!',
-        },
-      ],
-    },
-  ]
+  const { id } = useParams()
+  const { data, isLoading } = useGetPost(id)
+  const { mutate } = useCreateComment()
+  const [likes, setLikes] = useState(0)
+  const [isPostLiked, setPostIsLiked] = useState(false)
+  const { mutate: mutatePostLiked } = useLikePost(id, isPostLiked)
+  const [isActive, setIsActive] = useState(false)
+  const { mutate: mutatePostDelete } = useDeletePost()
+  // const [isFollowed, setIsFollowed] = useState(false)
 
-  const [comments, setComments] = useState(initialComments)
-  const [expanded, setExpanded] = useState({}) // для отслеживания, какие комменты раскрыты
+  // комменты раскрыты
+  const [commentText, setCommentText] = useState('')
 
-  const toggleReplies = id => {
-    setExpanded(prev => ({ ...prev, [id]: !prev[id] }))
+  const handleAddComment = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (!commentText.trim()) return
+    const newComment: IPost = { postId: id, text: commentText }
+    mutate(newComment)
+    setCommentText('')
   }
 
-  const likeComment = id => {
-    setComments(prev =>
-      prev.map(comment =>
-        comment.id === id ? { ...comment, likes: comment.likes + 1 } : comment
-      )
-    )
+  function getTimeAgo(dateString: string) {
+    const date = new Date(dateString)
+    const now = new Date()
+    const diffMs = now - date
+
+    const seconds = Math.floor(diffMs / 1000)
+    const minutes = Math.floor(seconds / 60)
+    const hours = Math.floor(minutes / 60)
+    const days = Math.floor(hours / 24)
+    const weeks = Math.floor(days / 7)
+    const months = Math.floor(days / 30)
+    const years = Math.floor(days / 365)
+
+    if (years > 1) return `${years} years`
+    if (years > 0) return `${years} year`
+    if (months > 1) return `${months} months`
+    if (months > 0) return `${months} month`
+    if (weeks > 1) return `${weeks} weeks`
+    if (weeks > 0) return `${weeks} week`
+    if (days > 1) return `${days} days`
+    if (days > 0) return `${days} day`
+    if (hours > 0) return `${hours} h`
+    if (minutes > 0) return `${minutes} m`
+    return `${seconds}s`
   }
+
   function handleBack() {
     navigate(-1) //вернуться назад
   }
+
+  function handleCommentLike() {
+    if (isPostLiked) {
+      setLikes((prev: number) => prev - 1)
+    } else {
+      setLikes((prev: number) => prev + 1)
+    }
+    setPostIsLiked((prev: boolean) => !prev)
+    mutatePostLiked()
+  }
+
+  function backClick() {
+    navigate(-1)
+  }
+
+  useEffect(() => {
+    if (data) {
+      setLikes(data._count?.likes || 0)
+      setPostIsLiked(data.isLiked || false)
+    }
+  }, [data])
+
+  function modalClick() {
+    setIsActive(prev => !prev)
+  }
+  function handleDelete() {
+    mutatePostDelete(id, {
+      onSuccess: () => {
+        navigate('/home')
+      },
+    })
+  }
+
+  // const handleFollow = () => {
+  //   setIsFollowed(prev => !prev)
+  // }
+
+  if (!data) {
+    return <div>Loading...</div>
+  }
+
   return (
     <div className={styles.section}>
       <div className={styles.modalContent}>
         <div className={styles.modalOverlay} onClick={handleBack}></div>
         <div className={styles.postImgBox}>
-          <img className={styles.img} src={PostImage} alt='post' />
+          <img className={styles.img} src={data.mediaUrl} alt='post' />
         </div>
         <div className={styles.rightBlock}>
           <div className={styles.usersCommentContainer}>
@@ -76,110 +120,81 @@ function Post() {
               <div className={styles.usernameBox}>
                 <img
                   className={styles.userImg}
-                  src={UserPhoto}
+                  src={data.author.profile.photo}
                   alt='UserPhoto'
                 />
-                <p className={styles.username}>itcareerhub</p>
+                <p className={styles.username}>{data.author.username}</p>
               </div>
-              <img src={PostSet} alt='PostSet' />
+              {/* <button onClick={handleFollow}>
+                {isFollowed ? 'Unfollow' : 'Follow'}
+              </button> */}
+              <img src={PostSet} alt='PostSet' onClick={modalClick} />
+              {isActive && (
+                <div className={styles.modal}>
+                  <p onClick={handleDelete} style={{ color: 'red' }}>
+                    Delete
+                  </p>
+                  <p>Edit</p>
+                  <Link to={`/post/${id}`}>Go to post</Link>
+                  <p onClick={backClick}>Cancel</p>
+                </div>
+              )}
             </div>
             <div className={styles.descBox}>
-              <div>
-                <img
-                  className={styles.userImg}
-                  src={UserPhoto}
-                  alt='UserPhoto'
-                />
-              </div>
+              <img
+                className={styles.userImg}
+                src={data.author.profile.photo}
+                alt='UserPhoto'
+              />
+
               <div>
                 <p className={styles.descText}>
-                  <span className={styles.username}>itcareerhub</span>{' '}
-                  Потрясающие новости пришли к нам из Черногории! Проект по
-                  поддержке бездомных животных TailBook, в разработке которого
-                  участвуют сразу 9 наших стажfff
+                  <span className={styles.username}>
+                    {data.author.username}
+                  </span>{' '}
+                  {data.text}
                 </p>
-                <p className={styles.time}>1 day</p>
+                <p className={styles.time}>{getTimeAgo(data.createdAt)}</p>
               </div>
             </div>
             <div className={styles.commentBlock}>
-              {comments.map(comment => (
-                <div className={styles.comment} key={comment.id}>
-                  <div className={styles.avatar}></div>
-                  <div className={styles.bubbleContainer}>
-                    <div className={styles.bubble}>
-                      <div className={styles.usernameBox}>
-                        <p className={styles.username}>{comment.author}</p>{' '}
-                        <span className={styles.time}>23 h.</span>
-                      </div>
-                      <p className={styles.commentText}>{comment.text}</p>
-                    </div>
-
-                    <div className={styles.actions}>
-                      <button onClick={() => likeComment(comment.id)}>
-                        <ThumbsUp size={16} />
-                        <span>{comment.likes}</span>
-                      </button>
-                      <button onClick={() => toggleReplies(comment.id)}>
-                        {expanded[comment.id] ? (
-                          <ChevronUp size={16} />
-                        ) : (
-                          <ChevronDown size={16} />
-                        )}
-                        <span>
-                          {expanded[comment.id]
-                            ? 'Скрыть ответы'
-                            : `Показать ответы (${comment.replies.length})`}
-                        </span>
-                      </button>
-                      <button>
-                        <MessageCircle size={16} />
-                        <span>Ответить</span>
-                      </button>
-                    </div>
-                    {/* {expanded[comment.id] && (
-                      <div className={styles.replies}>
-                        {comment.replies.map(reply => (
-                          <div className={styles.reply} key={reply.id}>
-                            <div className={styles.replyAvatar}></div>
-                            <div className={styles.bubble}>
-                              <div className={styles.usernameBox}>
-                                <p className={styles.username}>
-                                  {reply.author}
-                                </p>{' '}
-                                <span className={styles.time}>23 h.</span>
-                              </div>
-                              <p className={styles.commentText}>{reply.text}</p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )} */}
-                  </div>
-                </div>
-              ))}
+              <Comments comments={data?.comments} />
             </div>
           </div>
           <div>
             <div className={styles.postLikesBlock}>
               <div className={styles.imgBlock}>
-                <img className={styles.img} src={LikeIcon} alt='LikeIcon' />
+                {!isPostLiked ? (
+                  <img
+                    className={styles.img}
+                    src={Heart}
+                    onClick={handleCommentLike}
+                    alt='heart'
+                  />
+                ) : (
+                  <div className={styles.img} onClick={handleCommentLike}>
+                    <HeartAlsComp size={24} />
+                  </div>
+                )}
                 <img
                   className={styles.img}
                   src={CommentIcon}
                   alt='CommentIcon'
                 />
               </div>
-              <p className={styles.likeCount}>25 likes</p>
-              <p className={styles.time}>1 day</p>
+              <p className={styles.likeCount}>{likes} likes</p>
+              <p className={styles.time}>{getTimeAgo(data.createdAt)}</p>
             </div>
-            <form className={styles.form}>
+            <form className={styles.form} onSubmit={handleAddComment}>
               <input
                 className={styles.formInput}
                 type='text'
                 name='text'
                 placeholder='Add comment'
+                value={commentText}
+                onChange={e => setCommentText(e.target.value)}
               />
-              <button>Send</button>
+              <button type='submit'>Send</button>
             </form>
           </div>
         </div>

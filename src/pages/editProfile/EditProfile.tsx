@@ -72,9 +72,12 @@ function EditProfile() {
       { file: image, profile: formData },
       {
         onSuccess: updatedUserData => {
-          console.log({ avatar: updatedUserData.data.profile.photo })
-          setUser({ avatar: updatedUserData.data.profile.photo })
           navigate('/user/my-profile')
+          setUser({
+            avatar: updatedUserData.data.profile.photo,
+            id: updatedUserData.data.id,
+            fullName: updatedUserData.data.username,
+          })
         },
       }
     )

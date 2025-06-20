@@ -30,7 +30,6 @@ function PostCreateForm() {
   const userAvatar = user?.avatar || '/this_is_fine.png'
 
   const onSubmit = (data: IFormInput) => {
-    console.log(data)
     const formData = new FormData()
     formData.append('text', data.text)
     formData.append('file', data.file[0]) // а в запросе уже нет
