@@ -92,7 +92,10 @@ function EditProfile() {
       <h2 className={style.title}>Edit profile</h2>
       <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={style.photoBox}>
-          <label htmlFor='file-upload' className={style.uploadLabel}>
+          <label
+            htmlFor='file-upload'
+            className={`${style.uploadLabel} ${preview}`}
+          >
             <img src={preview} alt='preview' width='120' height='120' />
           </label>
           <input

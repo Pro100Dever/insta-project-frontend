@@ -17,7 +17,10 @@ function SingUp() {
       </div>
       <div className={style.regBox}>
         <p className={style.text}>
-          Have an account? <Link to='/login'>Log in</Link>
+          Have an account?{' '}
+          <Link to='/login' className={style.link}>
+            Log in
+          </Link>
         </p>
       </div>
     </section>

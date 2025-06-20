@@ -17,12 +17,20 @@
     display: flex;
     flex-direction: column;
     margin: 34px 0 45px;
-    gap: 30px;
+    gap: 10px;
 
     & li a {
       display: flex;
       align-items: center;
       gap: 15px;
+    }
+    li {
+      padding: 10px;
+      cursor: pointer;
+      &:hover {
+        background: #dbdbdb;
+        border-radius: 12px;
+      }
     }
   }
 

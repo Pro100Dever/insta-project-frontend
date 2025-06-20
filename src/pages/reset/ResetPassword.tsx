@@ -21,12 +21,12 @@ function ResetPassword() {
           <span className={style.orText}>OR</span>
           <div className={style.orLine}></div>
         </div>
-        <Link to='/register' className={style.createLink}>
+        <Link to='/register' className={`${style.createLink}  ${style.link}`}>
           Create new account
         </Link>
       </div>
       <div className={style.regBox}>
-        <Link to='/login' className={style.text}>
+        <Link to='/login' className={`${style.text} ${style.link}`}>
           Back to login
         </Link>
       </div>

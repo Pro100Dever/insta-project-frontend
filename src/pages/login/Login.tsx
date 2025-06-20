@@ -21,13 +21,19 @@ function Login() {
             <span className={style.orText}>OR</span>
             <div className={style.orLine}></div>
           </div>
-          <Link to='/reset-password' className={style.forgotLink}>
+          <Link
+            to='/reset-password'
+            className={`${style.forgotLink} ${style.link}`}
+          >
             Forgot password?
           </Link>
         </div>
         <div className={style.regBox}>
           <p className={style.text}>
-            Don't have an account? <Link to='/register'>Sign up</Link>
+            Don't have an account?{' '}
+            <Link to='/register' className={style.link}>
+              Sign up
+            </Link>
           </p>
         </div>
       </div>
